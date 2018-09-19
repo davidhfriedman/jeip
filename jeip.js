@@ -268,13 +268,18 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				$( "#saving-" + self.id).fadeIn( "fast" );
 			} );
 
+			var calculated_data = opt.data;
+			if (typeof(opt.data) == 'function') {
+			  calculated_data = opt.data(self);
+                        }
+
 			var ajax_data = {
 				url			: location.href,
 				id			: self.id,
 				form_type	: opt.form_type,
 				orig_value	: orig_value,
 				new_value	: $( "#edit-" + self.id ).prop( "value" ),
-				data		: opt.data
+				data		: calculated_data
 			}
 
 			if( opt.form_type == 'select' ) {
